@@ -1,10 +1,10 @@
 import "../styles/App.css"
-
+import LoginForm from './Login'
 function App() {
 
   return (
     <>
-    <h1>fuck this shit!</h1>
+    <LoginForm />
     </>
   )
 }
