@@ -3,7 +3,7 @@ import { useEffect,useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { getPosts } from "./services/BlogPost"
 function App() {
-  const [posts,setPosts] = useState(null);
+  const [posts,setPosts] = useState([]);
   const navigate = useNavigate();
   useEffect(  ()=>{
         async function fetchPost() {
@@ -15,12 +15,18 @@ function App() {
           
         }
         fetchPost();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
 console.log(posts)
   return (
     <>
-    <h1>helo</h1>
+     {posts.map(post=>(
+        <div key={post.id} id = {post.id}>
+          <h4>{post.title}</h4>
+          <p>{post.content}</p>
+        </div>
+     ))}
     </>
   )
 }
