@@ -1,6 +1,6 @@
 import "../styles/App.css"
 import { useEffect,useState } from "react"
-import { useNavigate } from "react-router-dom"
+import { useNavigate,Outlet } from "react-router-dom"
 import { getPosts } from "./services/BlogPost"
 function App() {
   const [posts,setPosts] = useState([]);
@@ -15,18 +15,12 @@ function App() {
           
         }
         fetchPost();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+  },[navigate])
 
 console.log(posts)
   return (
     <>
-     {posts.map(post=>(
-        <div key={post.id} id = {post.id}>
-          <h4>{post.title}</h4>
-          <p>{post.content}</p>
-        </div>
-     ))}
+    <Outlet context={{posts,setPosts}}/>
     </>
   )
 }
