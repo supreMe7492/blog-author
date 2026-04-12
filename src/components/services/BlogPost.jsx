@@ -23,10 +23,11 @@ async function createPost(postData){
         },
         body : JSON.stringify(postData)
          })
-        const response = await data.json() 
+        const response = await data.json();
           if(!data.ok){
         throw new Error( response.error.message || "something wnet wrong");
        }   
+       return response;
 }
 
 export {getPosts,createPost}

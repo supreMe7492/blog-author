@@ -17,7 +17,6 @@ function App() {
         fetchPost();
   },[navigate])
 
-console.log(posts)
   return (
     <>
     <Outlet context={{posts,setPosts}}/>
