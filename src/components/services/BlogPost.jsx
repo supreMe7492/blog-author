@@ -30,4 +30,19 @@ async function createPost(postData){
        return response;
 }
 
-export {getPosts,createPost}
+async function editPost(id,postData){
+      const data  = await fetch(`http://localhost:3000/author/posts/${id}`,{
+        method : 'PUT',
+        headers: {
+            'Content-Type':'application/json',
+            'Authorization':  `Bearer ${localStorage.getItem('token')}`
+        },
+        body : JSON.stringify(postData)
+         })
+        const response = await data.json();
+          if(!data.ok){
+        throw new Error( response.error.message || "something wnet wrong");
+       }   
+       return response;
+}
+export {getPosts,createPost,editPost}
