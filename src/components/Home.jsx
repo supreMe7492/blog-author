@@ -1,7 +1,8 @@
-import { useOutletContext,useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { usePostContext } from "./PostContext";
 
 function Home() {
-    const {posts} = useOutletContext();
+    const {posts} = usePostContext();
     const nav = useNavigate();
     return(
         <>

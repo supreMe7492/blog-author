@@ -1,9 +1,10 @@
-import { useOutletContext,useNavigate,useParams } from "react-router-dom";
+import { useNavigate,useParams } from "react-router-dom";
 import { useState } from "react";
 import { editPost } from "./services/BlogPost";
+import { usePostContext } from "./PostContext";
 
 function EditForm(){
-    const {posts,setPosts} = useOutletContext();
+    const {posts,setPosts} = usePostContext();
     const {postId} = useParams();
     
     const postDetails = posts.find(post => post.id == postId);

@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { useOutletContext,useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { createPost } from "./services/BlogPost";
+import { usePostContext } from "./PostContext";
+
 function CreateForm (){
     const navigate = useNavigate();
     const [title,setTilte] = useState('');
     const [content,setContent] = useState('');
-    const {setPosts} = useOutletContext();
+    const {setPosts} = usePostContext();
     async function handleSubmit(e){
         e.preventDefault();
         const data =await createPost({title,content});

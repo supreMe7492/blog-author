@@ -1,32 +1,28 @@
 import "../styles/App.css"
-import { useEffect,useState } from "react"
-import { useNavigate,Outlet } from "react-router-dom"
-import { getPosts } from "./services/BlogPost"
-function App() {
-  const [posts,setPosts] = useState([]);
-  const [initialized,setInitialized] = useState(false)
-  const navigate = useNavigate();
-  useEffect(  ()=>{
-    if(initialized)
-      return;
-        async function fetchPost() {
-         try{ 
-          const authorPosts = await getPosts();
-          setPosts(authorPosts);
-          setInitialized(true);
-        }catch(err){
-            navigate('/login')
-        }
-          
-        }
-        fetchPost();
-  },[initialized, navigate])
+import { BrowserRouter,Route,Routes, Outlet } from "react-router-dom";
+import PostProvider from "./PostContext";
+import Home from "./Home";
+import CreateForm from "./CreatePost";
+import EditForm from "./Edit";
+import LoginForm from "./Login";
 
-  return (
-    <>
-    <Outlet context={{posts,setPosts}}/>
-    </>
+function App() {
+  return(
+    <PostProvider>
+      <Routes>
+        <Route path="/" element={<AppLayout />} >
+          <Route index element={<Home/>}/>
+          <Route path='/create' element = {<CreateForm/>} />
+          <Route path='/edit/:postId' element = {<EditForm />} />
+        </Route>
+        <Route path='/login' element={<LoginForm />} />
+      </Routes>
+    </PostProvider>
   )
+}
+
+function AppLayout() {
+  return <Outlet />;
 }
 
 export default App
