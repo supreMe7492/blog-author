@@ -5,6 +5,7 @@ function Home() {
     const nav = useNavigate();
     return(
         <>
+        <button type="button" onClick={()=>nav('/create')}>Create new Post</button>
           {posts.map(post=>(
             <div key={post.id}>
                 <p onClick={()=>nav(`edit/${post.id}`)}>{post.title}</p>
