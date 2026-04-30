@@ -1,9 +1,11 @@
 import { createContext,useState,useEffect, useContext } from "react";
 import { getPosts } from "./services/BlogPost";
+import { useNavigate } from "react-router-dom";
 const PostContext = createContext();
 
 function PostProvider({children}){
   const [posts,setPosts] = useState([]);
+  const nav = useNavigate();
 
      useEffect(  ()=>{
    
@@ -12,7 +14,11 @@ function PostProvider({children}){
           const authorPosts = await getPosts();
           setPosts(authorPosts);
         }catch(err){
-           console.log(err)
+          if (err.message.includes("invalid token")) {
+                localStorage.removeItem("token");
+                nav("/login");
+               return;
+    }
         }
           
         }
