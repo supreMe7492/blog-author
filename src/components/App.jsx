@@ -8,21 +8,23 @@ import LoginForm from "./Login";
 
 function App() {
   return (
-    <PostProvider>
-      <Routes>
-        <Route path="/" element={<AppLayout />}>
-          <Route index element={<Home />} />
-          <Route path="/create" element={<CreateForm />} />
-          <Route path="/edit/:postId" element={<EditForm />} />
-        </Route>
-        <Route path="/login" element={<LoginForm />} />
-      </Routes>
-    </PostProvider>
+    <Routes>
+      <Route path="/" element={<AppLayout />}>
+        <Route index element={<Home />} />
+        <Route path="/create" element={<CreateForm />} />
+        <Route path="/edit/:postId" element={<EditForm />} />
+      </Route>
+      <Route path="/login" element={<LoginForm />} />
+    </Routes>
   );
 }
 
 function AppLayout() {
-  return <Outlet />;
+  return (
+    <PostProvider>
+      <Outlet />
+    </PostProvider>
+  );
 }
 
 export default App;
