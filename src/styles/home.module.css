@@ -93,32 +93,6 @@
 }
 
 
-@media (max-width: 900px) {
-  .gridBox {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 14px;
-  }
-
-  .createBtn {
-    top: 16px;
-    right: 16px;
-    padding: 9px 14px;
-    font-size: 14px;
-  }
-
-  .card {
-    padding: 12px;
-  }
-
-  .head {
-    font-size: 15px;
-  }
-
-  .content {
-    font-size: 12.5px;
-  }
-}
-
 
 @media (max-width: 600px) {
   .gridBox {

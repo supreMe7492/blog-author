@@ -15,4 +15,17 @@ async function logUser(userdata) {
   localStorage.setItem("token", `${response.token}`);
 }
 
-export { logUser };
+async function signUSer(userdata) {
+  const data = await fetch("http://localhost:3000/signup", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(userdata),
+  });
+
+  if (!data.ok) {
+    throw new Error(`HTTP ${data.status}: Failed to login`);
+  }
+}
+export { logUser, signUSer };
