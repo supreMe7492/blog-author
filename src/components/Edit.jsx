@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
-import { editPost, publishPost } from "./services/BlogPost";
+import { editPost, publishPost, removePost } from "./services/BlogPost";
 import { usePostContext } from "./PostContext";
 import styles from "../styles/blogForm.module.css";
 
@@ -31,9 +31,15 @@ function EditForm() {
       prev.map((p) => (p.id == postId ? { ...p, published: true } : p)),
     );
   }
+
+  async function handleDelete() {
+    await removePost(postId);
+    setPosts((prev) => prev.filter((p) => p.id != postId));
+    nav("/");
+  }
   return (
     <div className={styles.container}>
-      <form onSubmit={handleSubmit} className={styles.form}>
+      {/* <form onSubmit={handleSubmit} className={styles.form}>
         <input
           type="text"
           name="title"
@@ -57,6 +63,47 @@ function EditForm() {
         ) : (
           <button onClick={handlePublish}>publish</button>
         )}
+        <button onClick={handleDelete}>Delete Post</button>
+      </form> */}
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <input
+          type="text"
+          className={styles.input}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+
+        <textarea
+          className={styles.textarea}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
+
+        <button type="submit" className={styles.button}>
+          Save Changes
+        </button>
+
+        {/* Publish / Status */}
+        {publish ? (
+          <div className={styles.publishedBadge}>Published ✓</div>
+        ) : (
+          <button
+            type="button"
+            className={styles.publishButton}
+            onClick={handlePublish}
+          >
+            Publish
+          </button>
+        )}
+
+        {/* Delete */}
+        <button
+          type="button"
+          className={styles.deleteButton}
+          onClick={handleDelete}
+        >
+          Delete Post
+        </button>
       </form>
     </div>
   );
