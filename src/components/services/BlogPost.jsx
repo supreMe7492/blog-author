@@ -59,4 +59,19 @@ async function publishPost(id) {
   }
   return response;
 }
-export { getPosts, createPost, editPost, publishPost };
+
+async function removePost(id) {
+  const data = await fetch(`http://localhost:3000/author/posts/${id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+  });
+  const response = await data.json();
+  if (!data.ok) {
+    throw new Error(response.error.message || "something wnet wrong");
+  }
+  return response;
+}
+export { getPosts, createPost, editPost, publishPost, removePost };
