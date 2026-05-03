@@ -91,3 +91,66 @@
   margin-top: auto; /* THIS pushes it to bottom */
   cursor: pointer;
 }
+
+
+@media (max-width: 900px) {
+  .gridBox {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 14px;
+  }
+
+  .createBtn {
+    top: 16px;
+    right: 16px;
+    padding: 9px 14px;
+    font-size: 14px;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .head {
+    font-size: 15px;
+  }
+
+  .content {
+    font-size: 12.5px;
+  }
+}
+
+
+@media (max-width: 600px) {
+  .gridBox {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin-top: 70px;
+  }
+
+  .createBtn {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+
+    padding: 8px 12px;
+    font-size: 13px;
+  }
+
+  .card {
+    padding: 12px;
+    border-radius: 10px;
+  }
+
+  .head {
+    font-size: 15px;
+  }
+
+  .content {
+    font-size: 12px;
+  }
+
+  .button {
+    font-size: 11px;
+    padding: 5px 9px;
+  }
+}
