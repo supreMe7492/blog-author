@@ -50,7 +50,7 @@ function EditForm() {
           onChange={(e) => setContent(e.target.value)}
         />
         <button type="submit" className={styles.button}>
-          Create post
+          Edit post
         </button>{" "}
         {publish ? (
           <p>published</p>
