@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useState } from "react";
 import { editPost } from "./services/BlogPost";
 import { usePostContext } from "./PostContext";
+import styles from "../styles/blogForm.module.css";
 
 function EditForm() {
   const { posts, setPosts } = usePostContext();
@@ -24,23 +25,30 @@ function EditForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="title"
-        id="title"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      />
-      <input
-        type="text"
-        name="content"
-        id="content"
-        value={content}
-        onChange={(e) => setContent(e.target.value)}
-      />
-      <button type="submit">Make changes</button>
-    </form>
+    <div className={styles.container}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        <input
+          type="text"
+          name="title"
+          id="title"
+          className={styles.input}
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
+
+        <textarea
+          name="content"
+          id="content"
+          className={styles.textarea}
+          value={content}
+          onChange={(e) => setContent(e.target.value)}
+        />
+
+        <button type="submit" className={styles.button}>
+          Create post
+        </button>
+      </form>
+    </div>
   );
 }
 
